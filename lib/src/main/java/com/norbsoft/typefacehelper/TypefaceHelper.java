@@ -74,6 +74,23 @@ public class TypefaceHelper {
 	 * Return spannable string with typeface in certain style
 	 * see: http://stackoverflow.com/questions/8607707/how-to-set-a-custom-font-in-the-actionbar-title
 	 *
+	 * @param sequence to typeface typeface to
+	 * @param style    Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC or Typeface.BOLD_ITALIC
+	 *
+	 * @throws IllegalStateException {@link #init(TypefaceCollection)} has not been calledC
+	 * @return SpannableString that can be used in TextView.setText() method
+	 */
+	public static SpannableString typeface(CharSequence sequence, int style) {
+		if (sDefaultTypefaceCollection == null) {
+			throw new IllegalStateException("Default typeface collection not initialized. Forgot to call init()?");
+		}
+		return typeface(sequence, sDefaultTypefaceCollection, style);
+	}
+
+	/**
+	 * Return spannable string with typeface in certain style
+	 * see: http://stackoverflow.com/questions/8607707/how-to-set-a-custom-font-in-the-actionbar-title
+	 *
 	 * @param context to obtain string resource
 	 * @param strResId string resource id, content
 	 * @param collection TypefaceCollection instance
